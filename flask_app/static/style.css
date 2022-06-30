@@ -1,0 +1,55 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.header{
+    width: 1000px;
+    margin: 20px auto;
+    font-size: larger;
+    text-align: center;
+}
+
+.header h1, .header h6{
+    margin: 15px auto;
+}
+
+.body{
+    display: flex;
+    width: 1000px;
+    margin: 20px auto;
+}
+
+.leftSide{
+    display: flex;
+    flex: .5;
+    justify-content: center;
+}
+
+.form{
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 5px;
+}
+
+button{
+    margin-top: 10px;
+    align-items: center;
+} 
+
+.rightSide{
+    display: flex;
+    flex: .5;
+    justify-content: center;
+}
+
+.navbar{
+    width: 1000px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.navbar a{
+    text-decoration: none;
+}

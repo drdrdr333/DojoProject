@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3f8a32;">
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="/dashboard">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/create_event">New</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/search">Search</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/account_page">Account</a>
+            </li>
+          </ul>
+        </div>
+    </nav>
+
+    <div class="row">
+      <div class="d-flex mx-auto pt-4 pb-4">
+        <label class="pr-4" for="event_search">Text Search</label>
+        <input class="mr-4" type="text" id="event_search" onkeyup="search()">
+
+        <h3 class="pr-4">Search</h3>
+        <select name="" id="event_search_dropdown">
+            <option value="0">Event Name</option>
+            <option value="1">Location</option>
+            <option value="2">Attendees</option>
+            <option value="3">Date</option>
+            <option value="4">Creator</option>
+        </select>
+      </div>
+
+    </div>
+
+    <table class=" mx-auto table table-bordered table-hover" style="width: 75%;" id="my_table">
+        <tr>
+            <th>Event Name</th>
+            <th>Location Name</th>
+            <th>Attendees</th>
+            <th>Date</th>
+            <th>Creator</th>
+            <th>Action</th>
+        </tr>
+        
+        
+        {% for row in all_events %}
+        
+        <tr>
+            <td name="name"><a href="/event/{{row.id}}">{{row.name}}</a></td>
+            <td name="location">{{row.location}}</td>
+            <td name="members">{{row.active_members}}/{{row.members}}</td>
+            <td>{{row.date}}</td>
+            <td name="creator">{{row.creator}}</td>
+          {% if session.user_id in joiners and row.id in sports %}
+            <td>Already Joined</td>
+          {% elif row.active_members == row.member %}
+            <td>Full</td>
+          {% else %}
+            <td><a href="/add_member_to_event/{{session.user_id}}/{{row.id}}">Join</a></td>
+          {% endif %}
+        </tr>
+        
+        {% endfor %}
+        
+    </table>
+
+    <button><a href="/logout">Logout</a></button>
+
+    <script src="{{url_for ('static', filename='script.js')}}"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{url_for ('static', filename='style.css')}}">
+    <title>Hello World!</title>
+</head>
+<body>
+    <div class="header">
+        <h1>iSport</h1>
+        <h6>Free Pickup Game Finder and Organizer</h6>
+    </div>
+    <div class="body">
+        <div class="leftSide">
+            {% with messages = get_flashed_messages(category_filter=['register']) %}
+                {% if messages %}
+                        {% for message in messages %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <form action="/create_user" class="form" method="POST">
+                <label class="form" for="first_name">First Name:</label>
+                <input class="form" type="text" name="first_name">
+                <label class="form" for="last_name">Last Name:</label>
+                <input class="form" type="text" name="last_name">
+                <label class="form" for="email">Email:</label>
+                <input class="form" type="text" name="email">
+                <label class="form" for="password">Password:</label>
+                <input class="form" type="password" name="password">
+                <label class="form" for="conf_pw">Confirm Password:</label>
+                <input class="form" type="password" name="conf_pw">
+                <label class="form" for="birth_date">Birth Date:</label>
+                <input class="form" type="date" name="birth_date">
+                <button class="form" type="submit">Register</button>
+            </form>
+        </div>
+        <div class="rightSide">
+            {% with messages = get_flashed_messages(category_filter=['login']) %}
+                {% if messages %}
+                        {% for message in messages %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <form action="/login_user" class="form" method="POST">
+                <label class="form" for="email">Email:</label>
+                <input class="form" type="text" name="email">
+                <label class="form" for="password">Password:</label>
+                <input class="form" type="password" name="password">
+                <button class="form" type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>

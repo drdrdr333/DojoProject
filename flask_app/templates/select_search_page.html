@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3f8a32;">
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="/dashboard">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/create_event">New</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/search">Search</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/account_page">Account</a>
+            </li>
+          </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 col-md-4 pt-5 pl-5">
+                {% for row in event %}
+                    <h2 style="text-decoration: underline;">Event Details</h2>
+                    <h6>Title: {{row.name}}</h6>
+                    <h6>Location: {{row.location}}</h6>
+                    <h6>Date: {{date}}</h6>
+                    <h6>Time: {{time}}</h6>
+                {% endfor %}
+                <br>
+                <br>
+                <br>
+
+                <div style="border: 1px solid black;">
+                  <h4>Event Message Board</h4>
+                  <table>
+                    {% if messages|length > 0 %}
+                      {% for row in messages %}
+                        <tr>
+                          <td>{{name}}: {{row.text}}</td>
+                        </tr>
+                      {% endfor %}
+                    {% else %}
+                        <tr>
+                          <td>No messages for event!</td>
+                        </tr>
+                    {% endif %}
+                  </table>
+                </div>
+                <br>
+                <br>     
+                <button><a href="/add_message_to_event/{{event[0].id}}/{{session.user_id}}">Add Message</a></button>
+            </div>
+            <div class="col-12 col-md-8 pt-5 pr-2">
+                <h2>Unique Events - This day in history!</h2>
+                {% for item in info %}
+                    <p>{{item}}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

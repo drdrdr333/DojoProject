@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3f8a32;">
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="/dashboard">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/create_event">New</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/search">Search</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/account_page">Account</a>
+            </li>
+          </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="row">
+                <div class="col-6 col-md-4 pt-5 pl-2">
+                    <h1>User Info.</h1>
+                    <h4>Name: {{the_user.first_name}} {{the_user.last_name}}</h4>
+                    <h4>Email: {{the_user.email}}</h4>
+                    <h4>Password: {{the_user.password}}</h4>
+                    <br>
+                    <br>   
+                    <h4 style="text-decoration: underline;">Event History</h4>
+                    {% for event in old %}
+                        <p>{{event}}</p>
+                    {% endfor %}
+                    <br>
+                    <br>
+                    <h4 style="text-decoration: underline;">Future Event(s)</h4>
+                    {% for event in new %}
+                        <p>{{event}}</p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-12 col-md-8 pt-5 pr-2">
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>
